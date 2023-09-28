@@ -610,7 +610,7 @@ static void array_end(ParseInfo pi) {
 
     if (0 == array) {
         oj_set_error_at(pi, oj_parse_error_class, __FILE__, __LINE__, "unexpected array close");
-    } else if (NEXT_ARRAY_COMMA != array->next && NEXT_ARRAY_NEW != array->next) {
+    } else if (NEXT_ARRAY_COMMA != array->next && NEXT_ARRAY_NEW != array->next && NEXT_ARRAY_ELEMENT != array->next) {
         oj_set_error_at(pi,
                         oj_parse_error_class,
                         __FILE__,
@@ -635,7 +635,7 @@ static void hash_end(ParseInfo pi) {
     // leave hash on stack until just before
     if (0 == hash) {
         oj_set_error_at(pi, oj_parse_error_class, __FILE__, __LINE__, "unexpected hash close");
-    } else if (NEXT_HASH_COMMA != hash->next && NEXT_HASH_NEW != hash->next) {
+    } else if (NEXT_HASH_COMMA != hash->next && NEXT_HASH_NEW != hash->next && NEXT_HASH_KEY != hash->next) {
         oj_set_error_at(pi,
                         oj_parse_error_class,
                         __FILE__,
